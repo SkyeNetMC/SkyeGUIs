@@ -40,3 +40,4 @@ tmp/
 .env.test.local
 # Build directories
 build/
+node_modules
