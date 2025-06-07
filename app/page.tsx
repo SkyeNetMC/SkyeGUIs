@@ -114,6 +114,58 @@ export default function SkyeGuiEditor() {
     setSelectedItem(updatedItem)
   }
 
+  // Color code conversion function
+  const convertColorCodes = () => {
+    if (!selectedItem) return
+
+    const colorCodeMap: { [key: string]: string } = {
+      '&0': '<black>',
+      '&1': '<dark_blue>',
+      '&2': '<dark_green>',
+      '&3': '<dark_aqua>',
+      '&4': '<dark_red>',
+      '&5': '<dark_purple>',
+      '&6': '<gold>',
+      '&7': '<gray>',
+      '&8': '<dark_gray>',
+      '&9': '<blue>',
+      '&a': '<green>',
+      '&b': '<aqua>',
+      '&c': '<red>',
+      '&d': '<light_purple>',
+      '&e': '<yellow>',
+      '&f': '<white>',
+      '&k': '<obfuscated>',
+      '&l': '<bold>',
+      '&m': '<strikethrough>',
+      '&n': '<underlined>',
+      '&o': '<italic>',
+      '&r': '<reset>'
+    }
+
+    let convertedName = selectedItem.name
+    let convertedLore = [...selectedItem.lore]
+
+    // Convert name
+    Object.entries(colorCodeMap).forEach(([oldCode, newCode]) => {
+      convertedName = convertedName.replace(new RegExp(oldCode, 'g'), newCode)
+    })
+
+    // Convert lore
+    convertedLore = convertedLore.map(line => {
+      let convertedLine = line
+      Object.entries(colorCodeMap).forEach(([oldCode, newCode]) => {
+        convertedLine = convertedLine.replace(new RegExp(oldCode, 'g'), newCode)
+      })
+      return convertedLine
+    })
+
+    updateSelectedItem({ 
+      name: convertedName, 
+      lore: convertedLore 
+    })
+  }
+
   const addItemToSlot = () => {
     if (selectedSlot === null) return
 
@@ -507,6 +559,14 @@ ${item.customModelData ? `    custom-model-data: ${item.customModelData}` : ""}
                         className="bg-slate-600 border-slate-500 text-white h-20"
                         placeholder="Enter lore lines (one per line)"
                       />
+                      <Button 
+                        onClick={convertColorCodes}
+                        variant="secondary" 
+                        size="sm"
+                        className="mt-2 w-full bg-purple-600 hover:bg-purple-700 text-white border-purple-500"
+                      >
+                        Convert Color Codes (&a → &lt;green&gt;)
+                      </Button>
                     </div>
 
                     <div>
@@ -552,6 +612,18 @@ ${item.customModelData ? `    custom-model-data: ${item.customModelData}` : ""}
           </Card>
         </div>
       </div>
+      
+      {/* Footer */}
+      <footer className="bg-slate-900 border-t border-slate-700 py-4">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-slate-400 text-sm">
+            Made by{" "}
+            <span className="text-blue-400 font-semibold">NobleSkye</span>
+            {" "}for{" "}
+            <span className="text-purple-400 font-semibold">Skye Network</span>
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
