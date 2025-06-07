@@ -1,0 +1,10 @@
+# SkyeGUI Plugin Configuration
+enabled: true
+prefix: "<gold>[<aqua>SkyeGUI<gold>] "
+
+# GUI settings
+gui:
+  # Default GUI size (9, 18, 27, 36, 45, 54)
+  default-size: 27
+  # Enable debug logging
+  debug: false

@@ -1,0 +1,16 @@
+# SkyeGUI Plugin Messages
+prefix: "<gold>[<aqua>SkyeGUI<gold>] "
+
+# General messages
+reloaded: "<prefix><green>SkyeGUI Plugin reloaded successfully!"
+version: "<prefix><yellow>SkyeGUI Plugin <version> by SkyeNetwork Team"
+
+# Error messages
+gui-not-found: "<prefix><red>GUI not found: {name}"
+no-permission: "<prefix><red>You don't have permission to use this command!"
+player-only: "<prefix><red>This command can only be used by players!"
+error-creating-gui: "<prefix><red>Error creating GUI!"
+
+# Success messages
+gui-opened: "<prefix><green>GUI opened successfully!"
+commands-executed: "<prefix><green>Commands executed successfully!"

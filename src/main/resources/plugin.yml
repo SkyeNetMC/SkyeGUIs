@@ -1,0 +1,46 @@
+name: SkyeGUI
+version: '1.0.0'
+main: me.pilkeysek.skyegui.SkyeGUIPlugin
+api-version: '1.21'
+description: Standalone GUI plugin for creating custom inventory-based interfaces
+website: https://skyemc.net
+authors: [SkyeNetwork Team]
+
+commands:
+  creative:
+    description: Opens the gamemode menu
+    usage: /creative
+    permission: skyegui.creative
+  skyegui:
+    description: SkyeGUI management commands
+    usage: /skyegui [reload|version|list|open <gui>|<gui_name>]
+    permission: skyegui.admin
+  examplegui:
+    description: Opens the example GUI
+    usage: /examplegui
+    permission: skyegui.gui.example
+  stafftools:
+    description: Opens the staff tools GUI
+    usage: /stafftools
+    permission: skyegui.gui.staff
+  gmmenu:
+    description: Opens the gamemode menu GUI
+    usage: /gmmenu
+    permission: skyegui.gui.gamemode
+
+permissions:
+  skyegui.admin:
+    description: Access to GUI administration commands
+    default: op
+  skyegui.gui.example:
+    description: Access to example GUI
+    default: true
+  skyegui.gui.staff:
+    description: Access to staff tools GUI
+    default: op
+  skyegui.gui.gamemode:
+    description: Access to gamemode menu GUI
+    default: op
+  skyegui.creative:
+    description: Access to creative menu command
+    default: op
