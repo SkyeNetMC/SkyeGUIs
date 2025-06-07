@@ -1,16 +1,36 @@
-MIT License
+SkyeGUI Custom Restrictive License
 
 Copyright (c) 2025 SkyeNetwork Team
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+REDISTRIBUTION AND SHARING RESTRICTIONS:
+This software and associated documentation files (the "Software") are provided 
+for personal use only with strict limitations on distribution and sharing.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+PROHIBITED ACTIONS - YOU MAY NOT:
+- Share, distribute, or redistribute this software in any form (modified or unmodified)
+- Upload this software to any repositories, file sharing services, or platforms
+- Provide direct downloads or file transfers of this software
+- Include this software in mod packs, plugin collections, or bundles
+- Share compiled JAR files or source code through any means
+- Host mirrors or alternative download locations
+- Send the software files directly to others via Discord, email, forums, etc.
+
+PERMITTED ACTIONS - YOU MAY ONLY:
+- Use this software on your own servers for personal use
+- Modify the software for your own private use (but NOT share modifications)
+- Link others to the original source: https://github.com/SkyeNetwork/SkyeGUIs
+- Direct others to the online editor: https://editor.nobleskye.dev
+
+SHARING POLICY:
+If someone requests this software, you may ONLY provide:
+- A link to the official repository: https://github.com/SkyeNetwork/SkyeGUIs  
+- A link to the online editor: https://editor.nobleskye.dev
+- You CANNOT send files directly in any form
+
+OFFICIAL SOURCES:
+This software must be obtained directly from:
+- GitHub Repository: https://github.com/SkyeNetwork/SkyeGUIs
+- Online Editor: https://editor.nobleskye.dev
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
