@@ -3,3 +3,11 @@ node_modules
 out
 dist
 build
+*.log
+.env*
+.DS_Store
+
+# Next.js cache and build artifacts
+.next/cache/
+.next/trace
+.next/standalone/

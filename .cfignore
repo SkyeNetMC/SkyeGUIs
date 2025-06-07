@@ -1,0 +1,35 @@
+# Cloudflare Pages ignore file
+# Exclude Next.js build artifacts and cache
+
+.next/
+node_modules/
+*.log
+.env*
+.DS_Store
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Cache directories
+.next/cache/
+.next/standalone/
+.next/static/chunks/
+.next/trace
+.next/build-manifest.json
+.next/export-marker.json
+.next/images-manifest.json
+.next/package.json
+.next/prerender-manifest.json
+.next/routes-manifest.json
+
+# Development files
+.git/
+README.md
+components.json
+next-env.d.ts
+tsconfig.json
+tailwind.config.ts
+postcss.config.mjs
+
+# Only include the static export output
+!out/
