@@ -11,3 +11,32 @@ build
 .next/cache/
 .next/trace
 .next/standalone/
+.next/server
+# TypeScript cache
+*.tsbuildinfo
+# Yarn and npm lock files
+yarn.lock
+package-lock.json
+# IDE and editor specific files
+.vscode/
+.idea/
+# MacOS specific files
+.DS_Store
+# Windows specific files
+Thumbs.db
+# Logs
+logs/
+# Coverage reports
+coverage/
+# Temporary files
+tmp/
+# Local environment files
+.env.local
+# Local development files
+.env.development.local
+# Local production files
+.env.production.local
+# Local test files
+.env.test.local
+# Build directories
+build/
