@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
+import { MinecraftIcon } from "@/components/ui/minecraft-icon"
 import { Download, Upload, Github, Settings, Plus, Trash2, Grid3X3 } from "lucide-react"
 
 interface GuiItem {
@@ -33,6 +34,46 @@ interface GuiPanel {
   closeCommands: string[]
   items: GuiItem[]
 }
+
+// Common Minecraft materials for the dropdown
+const COMMON_MATERIALS = [
+  // Basic blocks
+  'stone', 'cobblestone', 'dirt', 'grass_block', 'sand', 'gravel', 'bedrock',
+  'oak_wood', 'oak_planks', 'glass', 'obsidian', 'netherrack', 'end_stone',
+  
+  // Ores and minerals
+  'coal_ore', 'iron_ore', 'gold_ore', 'diamond_ore', 'emerald_ore', 'redstone_ore',
+  'coal', 'iron_ingot', 'gold_ingot', 'diamond', 'emerald', 'redstone',
+  
+  // Tools and weapons
+  'wooden_sword', 'stone_sword', 'iron_sword', 'diamond_sword', 'netherite_sword',
+  'wooden_pickaxe', 'stone_pickaxe', 'iron_pickaxe', 'diamond_pickaxe', 'netherite_pickaxe',
+  'wooden_axe', 'stone_axe', 'iron_axe', 'diamond_axe', 'netherite_axe',
+  'wooden_shovel', 'stone_shovel', 'iron_shovel', 'diamond_shovel', 'netherite_shovel',
+  'bow', 'crossbow', 'shield', 'trident',
+  
+  // Armor
+  'leather_helmet', 'iron_helmet', 'diamond_helmet', 'netherite_helmet',
+  'leather_chestplate', 'iron_chestplate', 'diamond_chestplate', 'netherite_chestplate',
+  'leather_leggings', 'iron_leggings', 'diamond_leggings', 'netherite_leggings',
+  'leather_boots', 'iron_boots', 'diamond_boots', 'netherite_boots',
+  
+  // Food
+  'apple', 'bread', 'cooked_beef', 'cooked_porkchop', 'cooked_chicken', 'golden_apple',
+  'cake', 'cookie', 'melon_slice', 'sweet_berries', 'carrot', 'potato',
+  
+  // Redstone and mechanics
+  'redstone', 'redstone_torch', 'lever', 'button', 'pressure_plate', 'tripwire_hook',
+  'piston', 'dispenser', 'dropper', 'hopper', 'comparator', 'repeater',
+  
+  // Decorative
+  'torch', 'lantern', 'painting', 'item_frame', 'flower_pot', 'banner',
+  'chest', 'barrel', 'bookshelf', 'enchanting_table', 'anvil', 'beacon',
+  
+  // Special items
+  'ender_pearl', 'blaze_rod', 'nether_star', 'elytra', 'totem_of_undying',
+  'compass', 'clock', 'map', 'name_tag', 'saddle', 'lead'
+]
 
 export default function SkyeGuiEditor() {
   const [panel, setPanel] = useState<GuiPanel>({
@@ -343,7 +384,11 @@ ${item.customModelData ? `    custom-model-data: ${item.customModelData}` : ""}
                       title={`Slot ${index}${item ? ` - ${item.name}` : ""}`}
                     >
                       {item ? (
-                        <div className="text-yellow-400 font-bold">{item.material.charAt(0)}</div>
+                        <MinecraftIcon 
+                          itemId={item.material} 
+                          size={32}
+                          fallback={<div className="text-yellow-400 font-bold">{item.material.charAt(0)}</div>}
+                        />
                       ) : (
                         <span className="text-slate-400">{index}</span>
                       )}
@@ -391,12 +436,57 @@ ${item.customModelData ? `    custom-model-data: ${item.customModelData}` : ""}
                   <TabsContent value="basic" className="space-y-4">
                     <div>
                       <Label className="text-white">Material:</Label>
-                      <Input
-                        value={selectedItem.material}
-                        onChange={(e) => updateSelectedItem({ material: e.target.value })}
-                        className="bg-slate-600 border-slate-500 text-white"
-                        placeholder="STONE"
-                      />
+                      <div className="flex gap-2 items-start">
+                        <div className="flex-shrink-0">
+                          <MinecraftIcon 
+                            itemId={selectedItem.material} 
+                            size={40}
+                            className="border border-slate-500 rounded bg-slate-700 p-1"
+                            fallback={<div className="text-slate-400 font-bold text-lg">{selectedItem.material.charAt(0)}</div>}
+                          />
+                        </div>
+                        <div className="flex-1 space-y-2">
+                          <Select 
+                            value={selectedItem.material} 
+                            onValueChange={(value) => updateSelectedItem({ material: value })}
+                          >
+                            <SelectTrigger className="bg-slate-600 border-slate-500 text-white">
+                              <SelectValue placeholder="Select material..." />
+                            </SelectTrigger>
+                            <SelectContent className="bg-slate-700 border-slate-600 max-h-60">
+                              {COMMON_MATERIALS.map((material) => (
+                                <SelectItem 
+                                  key={material} 
+                                  value={material.toUpperCase()}
+                                  className="text-white hover:bg-slate-600 focus:bg-slate-600"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <MinecraftIcon itemId={material} size={16} />
+                                    <span className="capitalize">{material.replace(/_/g, ' ')}</span>
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <Input
+                            value={selectedItem.material}
+                            onChange={(e) => updateSelectedItem({ material: e.target.value })}
+                            className="bg-slate-600 border-slate-500 text-white"
+                            placeholder="Or type custom material (e.g., STONE)"
+                          />
+                          <p className="text-xs text-slate-400">
+                            Icons provided by{" "}
+                            <a 
+                              href="https://github.com/jacobsjo/mcicons" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-blue-400 hover:text-blue-300 underline"
+                            >
+                              jacobsjo/mcicons
+                            </a>
+                          </p>
+                        </div>
+                      </div>
                     </div>
 
                     <div>
